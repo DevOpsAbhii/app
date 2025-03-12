@@ -2,13 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout Code') {
-	    steps {
-		cleanWs() // Clears workspace
-                checkout scm
-            }
-
-            steps {
+        steps {
                 git 'https://github.com/DevOpsAbhii/app.git'
             }
         }
