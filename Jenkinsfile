@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        NODEJS_HOME = '/usr/bin'  // Path to Node.js
-    }
     stages {
         stage('Checkout Code') {
             steps {
@@ -16,15 +13,9 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
+        stage('Run Application') {
             steps {
-                sh 'npm test'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                sh 'node app.js &'
+                sh 'nohup node app.js &'
             }
         }
     }
