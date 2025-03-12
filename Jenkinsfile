@@ -3,6 +3,11 @@ pipeline {
 
     stages {
         stage('Checkout Code') {
+	    steps {
+		cleanWs() // Clears workspace
+                checkout scm
+            }
+
             steps {
                 git 'https://github.com/DevOpsAbhii/app.git'
             }
