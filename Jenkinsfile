@@ -13,7 +13,7 @@ pipeline {
             }
         }
 
-        stage('Run Application') {
+        stage('Run  the Application') {
             steps {
                 sh 'nohup node app.js &'
             }
