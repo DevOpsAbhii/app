@@ -1,11 +1,14 @@
 pipeline {
     agent any
-
+    environment {
+        NODEJS_HOME = '/usr/bin'  // Path to Node.js
+    }
     stages {
-        steps {
-                git 'https://github.com/DevOpsAbhii/app.git'
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/DevOpsAbhii/app.git'
             }
-        
+        }
 
         stage('Install Dependencies') {
             steps {
@@ -19,19 +22,10 @@ pipeline {
             }
         }
 
-        stage('Deploy (Optional)') {
+        stage('Deploy') {
             steps {
-                echo "Deployment steps go here"
+                sh 'node app.js &'
             }
-        }
-    }
-
-    post {
-        success {
-            echo "✅ Build Successful!"
-        }
-        failure {
-            echo "❌ Build Failed!"
         }
     }
 }
